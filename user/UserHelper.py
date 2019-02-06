@@ -1,6 +1,7 @@
 import json
 import os
 import settings.config
+import uuid
 
 
 class UserHelper:
@@ -31,3 +32,10 @@ class UserHelper:
         with open(settings.config.storage["path" + settings.config.osType] + currentuser["username"]+".txt", "w") as outfile:
             json.dump(currentuser, outfile)
         outfile.close()
+
+    # Get uuid object, use str(UserHelper.User.getUUID())
+    # if you need a string of the hex value
+    @staticmethod
+    def getUUID():
+        return uuid.uuid1()
+

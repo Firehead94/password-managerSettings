@@ -1,4 +1,5 @@
 from user import UserHelper
+import uuid
 
 
 class User:
@@ -13,7 +14,7 @@ class User:
         "ACCESS_LEVEL":""
         }
 
-    # Updates k with v in currentUser
+    # Updates k with v in currentUser, strings only for v please
     def update(k, v, self):
         for key in self.currentuser:
             if key == k:
@@ -24,6 +25,8 @@ class User:
     # Saves current user to local device
     def save(self):
         UserHelper.update_user(self.currentUser)
+
+
 
 
 
