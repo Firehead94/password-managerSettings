@@ -1,30 +1,30 @@
+from user import UserHelper
+
+
 class User:
 
-    user = {
-        'UUID':'',
-        'USERNAME':'',
-        'PASSWORD':'',
-        'FIRST_NAME':'',
-        'LAST_NAME':'',
-        'TIMESTAMP':'',
-        'ACCESS_LEVEL':''
+    currentUser = {
+        "UUID":"",
+        "USERNAME":"",
+        "PASSWORD":"",
+        "FIRST_NAME":"",
+        "LAST_NAME":"",
+        "TIMESTAMP":"",
+        "ACCESS_LEVEL":""
         }
 
-    def __init__(self):
-        pass
+    # Updates k with v in currentUser
+    def update(k, v, self):
+        for key in self.currentuser:
+            if key == k:
+                self.currentuser = {"k":"v"}
+                yield True
+        yield False
 
-    # Create New User Object
-    @staticmethod
-    def new_user():
-        pass
+    # Saves current user to local device
+    def save(self):
+        UserHelper.update_user(self.currentUser)
 
-    # Delete passed User Object
-    @staticmethod
-    def delete_user():
-        pass
 
-    # Get a user using username or uuid
-    @staticmethod
-    def get_user(*args):
-        pass
+
 
