@@ -15,12 +15,23 @@ import user.User
 
 class UserHelper:
 
-    # Delete passed User username
+    ############################################
+    #
+    # Deletes user file of specified username
+    # by deleting the local user file from
+    # the location set in the config.py
+    #
+    ############################################
     @staticmethod
     def delete_user(username):
         os.remove(settings.config.storage["path" + settings.config.osType] + username + ".txt")
 
-    # Get a user using username and returns user object
+    ##################################################
+    #
+    # Get a user using username and returns user
+    # object holding all user info. See User.py
+    #
+    ##################################################
     @staticmethod
     def get_user(username):
         with open(settings.config.storage["path" + settings.config.osType] + username + ".txt") as file:
@@ -29,7 +40,13 @@ class UserHelper:
         retuser = user.User(user)
         return retuser
 
-    # Update User Objects
+    #################################################
+    #
+    # Update local user file using a user object
+    # by dumping the contents of the internal
+    # dictionary of the user object.
+    #
+    #################################################
     @staticmethod
     def update_user(currentuser):
         if isinstance(currentuser, user.User):
@@ -39,8 +56,12 @@ class UserHelper:
             return True
         return False
 
-    # Get uuid object, use str(UserHelper.User.getUUID())
+    #######################################################
+    #
+    # Get new uuid object, use str(UserHelper.User.getUUID())
     # if you need a string of the hex value
+    #
+    #######################################################
     @staticmethod
     def getUUID():
         return uuid.uuid1()
