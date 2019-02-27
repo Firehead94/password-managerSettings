@@ -3,20 +3,21 @@
 import numpy as np
 import cv2 as cv
 
+# Change this if using a different video source. It currently uses whatever the computer has as default
 cap = cv.VideoCapture(0)
 
-# params for ShiTomasi corner detection
+# Parameters for ShiTomasi corner detection (goodPointsToTrack)
 feature_params = dict( maxCorners = 100,
                        qualityLevel = 0.1,
                        minDistance = 7,
                        blockSize = 3 )
 
-# Parameters for lucas kanade optical flow
+# Parameters for KLT Tracker
 lk_params = dict( winSize  = (15,15),
                   maxLevel = 2,
                   criteria = (cv.TERM_CRITERIA_EPS | cv.TERM_CRITERIA_COUNT, 10, 0.03))
 
-# Create some random colors
+# Create random colors for use in point tracking
 color = np.random.randint(0,255,(100,3))
 
 # Take first frame and find corners in it
@@ -35,14 +36,14 @@ p1 = []
 def calc():
     global p1
     p1, st, err = cv.calcOpticalFlowPyrLK(old_gray, frame_gray, p0, None, **lk_params)
-    # Select good points
+    # Select corners
     global good_new 
     good_new = p1[st==1]
     global good_old 
     good_old = p0[st==1]
 
 def draw(mask, frame):
-    # draw the tracks
+    # Draw tracking data
     for i,(new,old) in enumerate(zip(good_new,good_old)):
         a,b = new.ravel()
         c,d = old.ravel()
@@ -53,16 +54,19 @@ def draw(mask, frame):
 
 
 def update(frame_gray):
-    # Now update the previous frame and previous points
+    # Update the previous frame and points
     global old_gray
     old_gray = frame_gray.copy()
     global p0
     p0 = good_new.reshape(-1,1,2)
 
+# In progress
 #def essentialMat():
     #cv.findEssentialMat(p0, p1, 4,  'RANSAC', .999, 1, mask)
 
+# Main loop 
 while(1):
+
     ret,frame = cap.read()
     frame_gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
 
@@ -72,15 +76,22 @@ while(1):
 
     update(frame_gray)
 
+    # Redetection - TODO: make into function
     if (len(p1) <= 50):
         p0 = cv.goodFeaturesToTrack(old_gray, mask = None, **feature_params)
 
-    #essentialMat()
+    #essentialMat() -- in progress
 
+    # Show window
     cv.imshow('frame',img)
+
+    # Exit loop with specific key press (escape and x button on window)
     k = cv.waitKey(30) & 0xff
     if k == 27:
         break
+    if cv2.getWindowProperty('img',cv2.WND_PROP_VISIBLE) < 1:        
+        break
 
+# Kill
 cv.destroyAllWindows()
 cap.release()
