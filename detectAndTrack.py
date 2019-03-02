@@ -10,7 +10,8 @@ cap = cv.VideoCapture(0)
 feature_params = dict( maxCorners = 100,
                        qualityLevel = 0.01,
                        minDistance = 7,
-                       blockSize = 3 )
+                       blockSize = 3,
+		       useHarrisDetector = True )
 
 # Parameters for KLT Tracker
 lk_params = dict( winSize  = (15,15),
