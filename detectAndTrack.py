@@ -7,7 +7,7 @@ import cv2 as cv
 cap = cv.VideoCapture(0)
 
 # Parameters for ShiTomasi corner detection (goodPointsToTrack)
-feature_params = dict( maxCorners = 100,
+feature_params = dict( maxCorners = 50,
                        qualityLevel = 0.01,
                        minDistance = 7,
                        blockSize = 3,
@@ -78,7 +78,7 @@ while(1):
     update(frame_gray)
 
     # Redetection - TODO: make into function
-    if (len(p1) <= 50):
+    if (len(p1) <= 20):
         p0 = cv.goodFeaturesToTrack(old_gray, mask = None, **feature_params)
 
     #essentialMat() -- in progress
