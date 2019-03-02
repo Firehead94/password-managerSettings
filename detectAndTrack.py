@@ -8,7 +8,7 @@ cap = cv.VideoCapture(0)
 
 # Parameters for ShiTomasi corner detection (goodPointsToTrack)
 feature_params = dict( maxCorners = 100,
-                       qualityLevel = 0.1,
+                       qualityLevel = 0.01,
                        minDistance = 7,
                        blockSize = 3 )
 
@@ -89,7 +89,7 @@ while(1):
     k = cv.waitKey(30) & 0xff
     if k == 27:
         break
-    if cv2.getWindowProperty('img',cv2.WND_PROP_VISIBLE) < 1:        
+    if cv.getWindowProperty('frame',cv.WND_PROP_VISIBLE) < 1:        
         break
 
 # Kill
