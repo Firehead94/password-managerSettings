@@ -1,12 +1,15 @@
 import os
 import numpy as np
 import cv2
+import user
+import settings.config
 
 
 
-filename = 'video.avi'
+
 frames_per_second = 24.0
 My_res = '720p'
+
 
 #set res
 def change_res (cap, width, height):
@@ -37,23 +40,30 @@ def get_video_type(filename):
         return VIDEO_TYPE
     return VIDEO_TYPE['avi']
 
-cap = cv2.VideoCapture(0)
-dims = get_dims(cap, res=My_res)
-video_type_cv2 = get_video_type(filename)
+def cameraRun(currentuser):
+    user = currentuser
+    filename = settings.config.storage["path" + settings.config.osType] + settings.config.DEFAULT_CAMERA_FOLDER + "\\" + user["USERNAME"] + '.avi'
+    cap = cv2.VideoCapture(0)
+    dims = get_dims(cap, res=My_res)
+    video_type_cv2 = get_video_type(filename)
+    print(filename)
 
-out = cv2.VideoWriter(filename, video_type_cv2, frames_per_second, dims)
+    out = cv2.VideoWriter(filename, video_type_cv2, frames_per_second, dims)
 
-while(True):
-    #capture frames
-    ret, frame = cap.read()
-    out.write(frame)
-    #display the frames
-    cv2.imshow('frame', frame)
-    if cv2.waitKey(20) & 0xFF == ord('q'):
-         break
+    while(True):
+        #capture frames
+        ret, frame = cap.read()
+        out.write(frame)
+        #display the frames
+        cv2.imshow('frame', frame)
+        if cv2.waitKey(20) & 0xFF == ord('q'):
+             break
 
-#release capture
-cap.release()
-out.release()
-cv2.destroyAllWindows()
+    #release capture
+    cap.release()
+    out.release()
+    cv2.destroyAllWindows()
+
+user  = {"USERNAME":"testUser",}
+cameraRun(user)
 

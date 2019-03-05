@@ -24,7 +24,7 @@ class UserHelper:
     ############################################
     @staticmethod
     def delete_user(username):
-        os.remove(settings.config.storage["path" + settings.config.osType] + username + ".txt")
+        os.remove(settings.config.storage["path" + settings.config.osType] + settings.config.DEFAULT_USER_FOLDER +  "\\" + username + ".txt")
 
     ##################################################
     #
@@ -34,7 +34,7 @@ class UserHelper:
     ##################################################
     @staticmethod
     def get_user(username):
-        with open(settings.config.storage["path" + settings.config.osType] + username + ".txt") as file:
+        with open(settings.config.storage["path" + settings.config.osType] + settings.config.DEFAULT_USER_FOLDER +  "\\" + username + ".txt") as file:
             user = json.load(file)
         file.close()
         retuser = user.User(user)
@@ -50,7 +50,7 @@ class UserHelper:
     @staticmethod
     def update_user(currentuser):
         if isinstance(currentuser, user.User):
-            with open(settings.config.storage["path" + settings.config.osType] + currentuser.user["username"]+".txt", "w") as outfile:
+            with open(settings.config.storage["path" + settings.config.osType] + settings.config.DEFAULT_USER_FOLDER +  "\\" + currentuser.user["username"]+".txt", "w") as outfile:
                 json.dump(currentuser.user, outfile)
             outfile.close()
             return True
