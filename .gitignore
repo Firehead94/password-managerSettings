@@ -6,4 +6,4 @@ gui/_pycache_
 *.py[cod]
 VisualSP.iml
 .DS_Store
-
+*.avi
