@@ -2,9 +2,8 @@
 venv/*
 odometry/*
 gui/__pycache__
-gui/_pycache_
+gui/_pychache_
 *.py[cod]
-VisualSP.iml
-.DS_Store
 *.avi
-camera/video.avi
+.DS_Store
+venv/
