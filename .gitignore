@@ -1,3 +1,5 @@
 .idea/*
 venv/*
 odometry/*
+gui/__pycache__
+*.py[cod]
