@@ -4,5 +4,6 @@ odometry/*
 gui/__pycache__
 gui/_pycache_
 *.py[cod]
-*.pyc
+VisualSP.iml
+.DS_Store
 
