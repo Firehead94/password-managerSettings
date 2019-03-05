@@ -2,6 +2,6 @@
 venv/*
 odometry/*
 gui/__pycache__
+gui/_pychache_
 *.py[cod]
-
-
+*.pyc
