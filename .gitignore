@@ -1,9 +1,0 @@
-.idea/*
-venv/*
-odometry/*
-gui/__pycache__
-gui/_pychache_
-*.py[cod]
-*.avi
-.DS_Store
-venv/
