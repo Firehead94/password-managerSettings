@@ -3,6 +3,7 @@
     <extensionMap>
       <mapping ext="klib" type="ARCHIVE" />
       <mapping pattern="ConnectionPool" type="JAVA" />
+      <mapping pattern="Frame" type="Python" />
     </extensionMap>
   </component>
 </application>
