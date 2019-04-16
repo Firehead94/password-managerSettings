@@ -10,8 +10,12 @@
           <option name="url" value="https://github.com/Scoppaa/Password-Manager.git" />
           <option name="userName" value="" />
         </UrlAndUserName>
+        <UrlAndUserName>
+          <option name="url" value="https://github.com/artek2001/Twichat2.0.git" />
+          <option name="userName" value="" />
+        </UrlAndUserName>
       </list>
     </option>
-    <option name="cloneParentDir" value="C:\Users\Justin\Documents\OaklandUniversity\CSI-3370\PasswordManager" />
+    <option name="cloneParentDir" value="C:\Users\Justin\Documents\PersonalProjects\TestProjects" />
   </component>
 </application>
