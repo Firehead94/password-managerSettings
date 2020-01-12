@@ -2,7 +2,6 @@
   <component name="FileTypeManager" version="17">
     <extensionMap>
       <mapping pattern="ConnectionPool" type="JAVA" />
-      <mapping ext="ini" type="PLAIN_TEXT" />
       <mapping pattern="Frame" type="Python" />
     </extensionMap>
   </component>
